@@ -1,5 +1,5 @@
 """
-Shared pytest fixtures for the Clarity test suite.
+Shared pytest fixtures for the Amberlin test suite.
 
 Flat imports (import db / api / metric_config) — the repo root is on PYTHONPATH.
 Every test runs against a SYNTHETIC, throwaway DB built from schema.sql; the real

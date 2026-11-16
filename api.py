@@ -176,7 +176,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="Clarity", lifespan=lifespan)
+app = FastAPI(title="Amberlin", lifespan=lifespan)
 
 # Browser calls from the Vite dev server are cross-origin. Scope to that origin
 # explicitly rather than "*" — this is health data, so no wildcard even in dev.

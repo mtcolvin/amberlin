@@ -1,4 +1,4 @@
-# Clarity
+# Amberlin
 
 A local-first personal health record. It keeps your labs, vitals, imaging, clinical
 documents and history on one timeline, on your own machine, and points at the things
@@ -8,7 +8,7 @@ appointment.
 **[Try the live demo](https://clarity.blot.world/)**: a read-only snapshot running on an
 invented record. It describes no real person.
 
-**Clarity does not diagnose, and is not a medical device.** It surfaces and describes;
+**Amberlin does not diagnose, and is not a medical device.** It surfaces and describes;
 it never tells you what a result means for your health. Every finding is framed as
 something to raise with a clinician. See [Safety](#safety-surface-never-diagnose).
 
@@ -20,7 +20,7 @@ Your medical history arrives scattered: lab results in one portal, imaging on a 
 a discharge summary as a 200-page scan, and nothing that puts them side by side. Most
 apps that fix this want your records on their servers.
 
-Clarity runs entirely on your machine. There is no account, no sync, no server, and no
+Amberlin runs entirely on your machine. There is no account, no sync, no server, and no
 telemetry. The database is a SQLite file in the project folder. Nothing leaves the
 machine unless you explicitly send it, and when you do, you see exactly what is going
 and approve it first.
@@ -75,7 +75,7 @@ back off as easily as on.
 
 ## Safety: surface, never diagnose
 
-Clarity computes facts about your numbers — out of range, slope, deviation from your
+Amberlin computes facts about your numbers — out of range, slope, deviation from your
 own baseline, crossing a cited guideline line. It does not interpret what those facts
 mean for your health. It names no conditions and suggests no treatment. A flag means
 "look at this," never "you have this."
@@ -189,7 +189,7 @@ against synthetic data — never the real record.
 
 ## Status and limitations
 
-Clarity is a personal project, built around one person's record and published because
+Amberlin is a personal project, built around one person's record and published because
 the architecture may be useful to others. Be aware:
 
 - **Single-user and local by design.** No accounts, no multi-user support, no cloud.
@@ -206,7 +206,7 @@ the architecture may be useful to others. Be aware:
 **GNU Affero General Public License v3.0** — see [`LICENSE`](LICENSE).
 
 AGPL rather than a permissive license on purpose: section 13 means anyone who runs a
-modified version of Clarity as a network service has to publish their changes. For a
+modified version of Amberlin as a network service has to publish their changes. For a
 health-records tool whose entire value proposition is that it runs on your own machine
 and sends nothing anywhere, a silently-modified hosted fork is precisely the outcome
 worth preventing.

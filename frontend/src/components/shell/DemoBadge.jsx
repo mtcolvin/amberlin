@@ -54,7 +54,7 @@ export default function DemoBadge() {
       {open && (
         <div className="demo-badge__panel">
           <p>
-            This is a <strong>snapshot</strong> of Clarity running against an invented
+            This is a <strong>snapshot</strong> of Amberlin running against an invented
             record — a folder of captured responses, with no server behind it. Everything
             you see is real output from the real application; what is missing is anything
             that needs a running backend.
@@ -73,7 +73,7 @@ export default function DemoBadge() {
               work here, because those run in the browser.</li>
           </ul>
           <p className="demo-badge__foot">
-            The medical record shown is invented and describes no real person. Run Clarity
+            The medical record shown is invented and describes no real person. Run Amberlin
             locally to use it with your own records.
           </p>
         </div>

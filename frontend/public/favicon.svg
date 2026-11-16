@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <!-- Clarity: the app's chart in miniature, in its dark-theme colours (index.css):
+  <!-- Amberlin: the app's chart in miniature, in its dark-theme colours (index.css):
        page ground, the green reference band, a guideline, the slate trend and one
        out-of-range red point. Drawn heavy on purpose so it still reads at 16px in a tab. -->
   <rect width="64" height="64" rx="14" fill="#11161b"/>

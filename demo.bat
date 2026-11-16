@@ -73,7 +73,7 @@ if "!START_API!"=="0" (
   echo [skip ] Demo backend already running on port %API_PORT%.
 ) else (
   echo [start] Demo backend  ^(uvicorn :%API_PORT%^) ...
-  start "Clarity DEMO API" cmd /k "call .venv\Scripts\activate.bat && python -m uvicorn api:app --host 127.0.0.1 --port %API_PORT%"
+  start "Amberlin DEMO API" cmd /k "call .venv\Scripts\activate.bat && python -m uvicorn api:app --host 127.0.0.1 --port %API_PORT%"
 )
 
 if "!START_WEB!"=="0" (
@@ -84,7 +84,7 @@ if "!START_WEB!"=="0" (
   REM to set VITE_API_BASE inline here, and `set VAR=value && cmd` in a batch file stores a
   REM TRAILING SPACE - every request went to "http://127.0.0.1:8001 /metrics" and nothing
   REM loaded. A committed env file has no quoting to get wrong.
-  start "Clarity DEMO Frontend" cmd /k "cd frontend && npm run dev -- --mode demo --port %WEB_PORT% --strictPort"
+  start "Amberlin DEMO Frontend" cmd /k "cd frontend && npm run dev -- --mode demo --port %WEB_PORT% --strictPort"
 )
 
 echo.
@@ -108,7 +108,7 @@ goto done
 
 :timedout
 echo [WARN ] Timed out (API listening=!API_UP!, Frontend listening=!WEB_UP!).
-echo         Check the "Clarity DEMO ..." window^(s^) for errors.
+echo         Check the "Amberlin DEMO ..." window^(s^) for errors.
 start "" "http://localhost:%WEB_PORT%"
 
 :done

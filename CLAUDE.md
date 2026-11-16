@@ -631,7 +631,7 @@ the record anywhere.
 
 ## Commands
 
-**Quick start (Windows):** double-click **`start.bat`** in the project root. It launches the backend and frontend in their own titled windows ("Clarity API" / "Clarity Frontend"), waits until both ports are actually listening, then opens the browser to http://localhost:5173. If a server is already running on its port it's left alone (no duplicate). The script only *starts* the servers — close the two windows yourself when done. It runs the same commands shown below (uvicorn without `--reload`, plain `npm run dev`); the manual steps are the underlying detail.
+**Quick start (Windows):** double-click **`start.bat`** in the project root. It launches the backend and frontend in their own titled windows ("Amberlin API" / "Amberlin Frontend"), waits until both ports are actually listening, then opens the browser to http://localhost:5173. If a server is already running on its port it's left alone (no duplicate). The script only *starts* the servers — close the two windows yourself when done. It runs the same commands shown below (uvicorn without `--reload`, plain `npm run dev`); the manual steps are the underlying detail.
 
 ```bash
 # Activate the venv (Python 3.13, on PATH as .venv)

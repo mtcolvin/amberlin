@@ -1,5 +1,5 @@
 """
-db.py — thin SQLite access layer for Clarity.
+db.py — thin SQLite access layer for Amberlin.
 
 Deliberately minimal: connect, initialize from schema.sql, insert, and fetch a
 metric's time-series. Nothing here knows about analysis — that lives in

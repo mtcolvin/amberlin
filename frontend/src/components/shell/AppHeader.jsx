@@ -1,6 +1,7 @@
 import { MenuIcon } from '../icons'
 import DemoBadge from './DemoBadge'
 import PortfolioLinks from './PortfolioLinks'
+import Wordmark from './Wordmark'
 
 // Persistent top bar on every route: the hamburger button (opens the nav drawer)
 // and the app name. The button advertises the drawer it controls for assistive
@@ -18,7 +19,7 @@ export default function AppHeader({ onMenuClick, drawerOpen }) {
       >
         <MenuIcon />
       </button>
-      <span className="app-header__title">Clarity</span>
+      <span className="app-header__title"><Wordmark className="app-header__wordmark" /></span>
       {/* Beside the app's own name, in the one bar that is on screen wherever you have
           navigated to — and costing no vertical space, which matters on the imaging page,
           where the viewport belongs to the stage. */}

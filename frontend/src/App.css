@@ -1941,14 +1941,20 @@ select option {
   color: var(--c-accent);
 }
 
-/* Wordmark: the display face, uppercase and letterspaced. text-transform rather than
-   capitals in the markup, so the accessible name stays "Health tracker". */
+/* Wordmark: "amberlin" in Fraunces, drawn as outlines (Wordmark.jsx) so it needs no
+   webfont. Sized by HEIGHT — the box runs from the top of the b/l ascenders to the
+   baseline (the word has no descenders) — and painted in the ink colour, so it follows
+   the theme. */
 .app-header__title {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  color: var(--c-ink);
+}
+
+.app-header__wordmark {
+  display: block;
+  height: 1.2rem;
+  width: auto;
 }
 
 /* Drawer + backdrop. */

@@ -1,4 +1,4 @@
-# Clarity — ROADMAP
+# Amberlin — ROADMAP
 
 > **Status:** this file is the SOLE SOURCE OF TRUTH for the project's plan and roadmap. Content: the canonical 14 items (original numbering preserved) + #15, the ACTIVE-NOW seeds work, and decisions from the threshold-curation session.
 > **Persistence:** RESOLVED — the roadmap lives here, not in `CLAUDE.md`. `CLAUDE.md`'s "Roadmap (not yet built)" section is now just a pointer here; `CLAUDE.md` keeps only charters, conventions, and architecture. (The stable threshold-curation *discipline* — the citation-status taxonomy and skip-decision rationales, which code comments reference — stays in `CLAUDE.md` under "Threshold curation discipline"; this file holds only the forward curation work.)

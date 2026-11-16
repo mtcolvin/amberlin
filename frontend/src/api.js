@@ -175,7 +175,7 @@ async function sendJSON(method, path, body) {
   // succeed. Refuse here rather than let a fetch fail obscurely against a static host.
   if (STATIC_DEMO) {
     throw new StaticDemoError(
-      'This is a read-only demo — changes are disabled. Run Clarity locally to edit your own record.')
+      'This is a read-only demo — changes are disabled. Run Amberlin locally to edit your own record.')
   }
   const res = await fetch(`${API_BASE}${path}`, {
     method,

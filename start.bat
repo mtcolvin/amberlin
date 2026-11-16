@@ -1,6 +1,6 @@
 @echo off
 REM ============================================================================
-REM  start.bat - one-click launcher for the Clarity (Windows).
+REM  start.bat - one-click launcher for Amberlin (Windows).
 REM
 REM  Double-click this to:
 REM    1. Start the backend  (venv -> uvicorn on :8000) in its own titled window
@@ -11,7 +11,7 @@ REM
 REM  Notes:
 REM   - If a server is already running on its port, it is left alone (no
 REM     duplicate process) and the script just waits/opens the browser.
-REM   - The two server windows are titled "Clarity API" / "Clarity
+REM   - The two server windows are titled "Amberlin API" / "Amberlin
 REM     Frontend" so you can find and close them when you're done. This script
 REM     only STARTS them; closing one window does not stop the other.
 REM   - Works from anywhere: all paths resolve from this script's own location
@@ -46,14 +46,14 @@ if "!START_API!"=="0" (
   echo [skip ] Backend  already running on port %API_PORT% - leaving it as is.
 ) else (
   echo [start] Backend  ^(uvicorn :%API_PORT%^) ...
-  start "Clarity API" cmd /k "call .venv\Scripts\activate.bat && python -m uvicorn api:app --host 127.0.0.1 --port %API_PORT%"
+  start "Amberlin API" cmd /k "call .venv\Scripts\activate.bat && python -m uvicorn api:app --host 127.0.0.1 --port %API_PORT%"
 )
 
 if "!START_WEB!"=="0" (
   echo [skip ] Frontend already running on port %WEB_PORT% - leaving it as is.
 ) else (
   echo [start] Frontend ^(npm run dev :%WEB_PORT%^) ...
-  start "Clarity Frontend" cmd /k "cd frontend && npm run dev"
+  start "Amberlin Frontend" cmd /k "cd frontend && npm run dev"
 )
 
 REM --- wait until both ports are actually listening (max ~40s) ---
@@ -78,7 +78,7 @@ goto done
 
 :timedout
 echo [WARN ] Timed out waiting (API listening=!API_UP!, Frontend listening=!WEB_UP!).
-echo         Check the "Clarity API/Frontend" window^(s^) for errors.
+echo         Check the "Amberlin API/Frontend" window^(s^) for errors.
 echo         Opening the browser anyway...
 start "" "http://localhost:%WEB_PORT%"
 
