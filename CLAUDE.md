@@ -753,12 +753,15 @@ serves the built artifact and mounts every page against it before deploying, bec
 earlier step can pass and still yield a site that is blank in a browser. Requires
 Settings -> Pages -> Source: GitHub Actions, once.
 
-**It is served at `clarity.blot.world`.** That is a custom domain on this same Pages site: a
-`clarity` CNAME to `mtcolvin.github.io` at the DNS provider, plus the Custom domain setting
+**It is served at `amberlin.blot.world`** (it was `clarity.blot.world` until the app was
+renamed from Clarity on 2026-11-16, because the old name was shared with a finance app). That
+is a custom domain on this same Pages site: an `amberlin` CNAME to `mtcolvin.github.io` at the
+DNS provider, plus the Custom domain setting
 under Settings -> Pages (an Actions-deployed site takes it from there, not from a `CNAME`
 file). The github.io address redirects to it. So the demo is still deployed from this repo
 alone and stays out of the personal site's repository; moving it means changing the DNS
-record, that setting, `VITE_DEMO_LINKS_HOST` in `frontend/.env.static`, and the portfolio
+record, that setting, `VITE_DEMO_LINKS_HOST` in `frontend/.env.static` (a comma-separated
+list, so the old and new names can both carry the links during a move), and the portfolio
 card's link. The header's portfolio links are documented in `frontend/CLAUDE.md`.
 
 **Two things the published build needs that a local one does not**, both found by serving

@@ -5,7 +5,7 @@ documents and history on one timeline, on your own machine, and points at the th
 in your own data that stand out — so you can ask better questions at your next
 appointment.
 
-**[Try the live demo](https://clarity.blot.world/)**: a read-only snapshot running on an
+**[Try the live demo](https://amberlin.blot.world/)**: a read-only snapshot running on an
 invented record. It describes no real person.
 
 **Amberlin does not diagnose, and is not a medical device.** It surfaces and describes;
@@ -136,7 +136,7 @@ before anything is deployed. Enable it once under **Settings → Pages → Sourc
 Actions**. The demo store is generated during the run and is not in this repository, so
 there is no committed record for the workflow to publish.
 
-This repository's demo is served at [clarity.blot.world](https://clarity.blot.world/), a
+This repository's demo is served at [amberlin.blot.world](https://amberlin.blot.world/), a
 custom domain set in those same Pages settings. The `VITE_DEMO_*` values in
 `frontend/.env.static` add links back to the author's site and to this repository, shown
 only on that host. A fork publishing its own demo changes or deletes them.
