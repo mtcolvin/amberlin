@@ -790,6 +790,20 @@ the client as "fetch failed" and reads as a broken demo. `--serve` runs the same
 with a 128-deep queue. Both facts were found by running the smoke probe against the built
 artifact, which it can now do (`VITE_STATIC_DEMO=1`, pointed at the served snapshot).
 
+**Docker — `Dockerfile` + `compose.yaml` + `docker/nginx.conf`.** Two images from one file:
+`api` (the backend, all five stores pointed into one `/data` volume by the same `HEALTH_*` /
+`GATEWAY_AUDIT_LOG` variables the demo uses) and `web` (nginx serving the frontend built with
+`VITE_API_BASE=/api`, proxying `/api/` to the backend). Same origin through the proxy, so no
+CORS and the backend publishes no port of its own. Two decisions are load-bearing:
+**`.dockerignore` is an ALLOWLIST** (`*`, then code re-included file by file — frontend too,
+which has held a stray `health.db`), because this folder holds the real record and `docker
+build` ships the whole context to the daemon; `tests/test_dockerignore.py` evaluates the file
+with Docker's last-match-wins rule against every shape the record takes. And **the web port is
+bound to `127.0.0.1`**: the app has no login, so reaching it from the network is a choice the
+user makes by editing the port, not a default. The project's own machine has no Docker, so the
+images are exercised only by `.github/workflows/docker.yml` (build, load the page and a client
+route through nginx, write a reading, restart the backend, read it back from the volume).
+
 **Secrets — `.env.local` (gitignored, project root).** The export handoff's
 provider key (`ANTHROPIC_API_KEY`) lives in `.env.local`, loaded into the
 **backend process only** at API startup (`env_local.py`, called from `api.py`'s

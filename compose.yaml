@@ -1,0 +1,33 @@
+# Run Amberlin in Docker:   docker compose up -d --build
+# Then open                 http://localhost:8080
+#
+# Your record lives in the `amberlin-data` volume on this machine, and nowhere else.
+services:
+  api:
+    build:
+      context: .
+      target: api
+    volumes:
+      - amberlin-data:/data
+    # Optional: the external-export feature's provider key. Leave unset and the export
+    # handoff stays unavailable; nothing else needs it.
+    # environment:
+    #   ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      target: web
+    depends_on:
+      - api
+    ports:
+      # Bound to THIS machine only. Amberlin has no login: anyone who can reach this port
+      # can read and change the record. Change it to "8080:80" to reach it from other
+      # devices only if your network is one you trust with your medical history, ideally
+      # behind a VPN or a reverse proxy that adds authentication.
+      - "127.0.0.1:8080:80"
+    restart: unless-stopped
+
+volumes:
+  amberlin-data:

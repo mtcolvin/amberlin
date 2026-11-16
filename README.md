@@ -99,6 +99,26 @@ pip install -r requirements.txt
 cd frontend && npm install
 ```
 
+### Or with Docker
+
+```bash
+docker compose up -d --build      # then open http://localhost:8080
+```
+
+Two containers: the backend, and nginx serving the dashboard and proxying `/api/` to it.
+Your record lives in the `amberlin-data` volume on that machine and nowhere else.
+`docker compose down` stops it and keeps the data; `down -v` deletes the data too.
+
+- **It only answers on the machine running it** (`127.0.0.1:8080`). Amberlin has no login,
+  so anyone who can reach the port can read and change the record. To use it from other
+  devices, edit the port in `compose.yaml`, and only do so on a network you trust with
+  your medical history, ideally behind a VPN or an authenticating reverse proxy.
+- **Imaging and documents** are folders inside the volume
+  (`/data/imaging_store`, `/data/imaging_archive`, `/data/documents_store`).
+- **The build never sees your data.** `.dockerignore` is an allowlist: everything is
+  excluded and only code is let back in, so a record kept in the same folder as the code
+  cannot end up in an image.
+
 ## Run
 
 On Windows, double-click **`start.bat`** — it launches both servers in their own

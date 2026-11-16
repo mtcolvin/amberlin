@@ -1,0 +1,36 @@
+# ALLOWLIST. Everything is excluded, then only the code is let back in.
+#
+# This folder is also where a real install keeps its record: health.db and its backups,
+# imaging_store/, imaging_archive/, documents_store/, gateway_audit.log, .sweep/,
+# .env.local. `docker build` sends the whole build context to the Docker daemon, and a
+# daemon can be remote, so a denylist that missed one file would ship a medical record
+# into an image layer. The privacy charter requires allowlist-based masking for exactly
+# this reason: a list of what to strip always misses something, while a list of what to
+# keep cannot leak what it never names. tests/test_dockerignore.py pins the shape.
+*
+
+# Backend: the flat modules at the root, the schema, the pinned dependencies.
+!*.py
+!schema.sql
+!requirements.txt
+
+# Frontend: named file by file, NOT the whole folder (frontend/ has held a stray
+# health.db before, and its node_modules/dist/probe output are rebuilt anyway).
+!frontend/package.json
+!frontend/package-lock.json
+!frontend/index.html
+!frontend/vite.config.js
+!frontend/.env
+!frontend/public/
+!frontend/src/
+
+# The serving config for the web container.
+!docker/
+
+# Re-exclude anything a re-included folder or pattern could still drag in.
+**/__pycache__
+**/*.db
+**/*.db-*
+**/*.bak*
+**/.env.local
+**/*.log

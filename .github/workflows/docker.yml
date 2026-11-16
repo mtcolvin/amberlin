@@ -1,0 +1,77 @@
+# Build the Docker images and prove they work together: the frontend loads, the API
+# answers through the proxy, a reading can be written, and it survives a restart because
+# the record lives in the volume rather than the container.
+#
+# This runs in CI because the project's own machine does not have Docker; it is the only
+# place the Dockerfile is exercised. The reading it writes is invented test data, in a
+# throwaway volume on the runner.
+name: docker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Dockerfile'
+      - 'compose.yaml'
+      - '.dockerignore'
+      - 'docker/**'
+      - '**.py'
+      - 'schema.sql'
+      - 'requirements.txt'
+      - 'frontend/**'
+      - '.github/workflows/docker.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Build
+        run: docker compose build
+
+      - name: Start
+        run: docker compose up -d
+
+      - name: Wait for the app
+        run: |
+          for i in $(seq 1 60); do
+            curl -sf http://127.0.0.1:8080/api/metrics >/dev/null && exit 0
+            sleep 2
+          done
+          docker compose logs
+          exit 1
+
+      - name: Frontend, client-side routes and the API through the proxy
+        run: |
+          set -e
+          curl -sf http://127.0.0.1:8080/ | grep -q '<title>Amberlin'
+          curl -sf http://127.0.0.1:8080/timeline | grep -q '<div id="root">'
+          curl -sf http://127.0.0.1:8080/api/metrics | grep -q '\['
+          # The backend is reachable only through the proxy, never on a port of its own.
+          ! curl -s -m 3 http://127.0.0.1:8000/metrics
+
+      - name: Write a reading, restart, read it back
+        run: |
+          set -e
+          curl -sf -X POST http://127.0.0.1:8080/api/observations \
+            -H 'Content-Type: application/json' \
+            -d '{"metric":"Docker Check","value":4.2,"unit":"mg/dL","observed_on":"2026-01-02"}'
+          docker compose restart api
+          for i in $(seq 1 30); do
+            curl -sf "http://127.0.0.1:8080/api/observations/Docker%20Check" >/dev/null && break
+            sleep 2
+          done
+          curl -sf "http://127.0.0.1:8080/api/observations/Docker%20Check" | grep -q '4.2'
+
+      - name: Logs on failure
+        if: failure()
+        run: docker compose logs
+
+      - name: Remove the containers and the throwaway volume
+        if: always()
+        run: docker compose down -v
